@@ -48,25 +48,23 @@ Page({
   },
 
   onQuery: function() {
-    // const db = wx.cloud.database()
-    // // 查询当前用户所有的 counters
-    // db.collection('counters').where({
-    //   _openid: this.data.openid
-    // }).get({
-    //   success: res => {
-    //     this.setData({
-    //       queryResult: JSON.stringify(res.data, null, 2)
-    //     })
-    //     console.log('[数据库] [查询记录] 成功: ', res)
-    //   },
-    //   fail: err => {
-    //     wx.showToast({
-    //       icon: 'none',
-    //       title: '查询记录失败'
-    //     })
-    //     console.error('[数据库] [查询记录] 失败：', err)
-    //   }
-    // })
+    const db = wx.cloud.database()
+    // 查询当前用户所有的 counters
+    db.collection('salesforcedevexamlib').get({
+      success: res => {
+        this.setData({
+          queryResult: JSON.stringify(res.data, null, 2)
+        })
+        console.log('[数据库] [查询记录] 成功: ', res)
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
   },
 
   onCounterInc: function() {
