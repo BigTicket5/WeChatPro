@@ -1,13 +1,16 @@
 <!--pages/dbOperator/dbOperator.wxml-->
 <view class="container">
   <!-- 查询记录 -->
-  <view class="guide" >
-    <button size="mini" type="default" bindtap="onQuery">查询记录</button>
-    <text class="code" wx:if="{{queryResult}}">{{queryResult.question_text}}</text>
-    <text class="code" wx:if="{{queryResult}}">{{queryResult.question_options}}</text>
-    <div class="nav">
+  <view class="question" >
+    <text class="qText" wx:if="{{queryResult}}" >{{queryResult.question_index}}.{{queryResult.question_text}}</text>
+    <radio-group bindchange="radioChange">
+        <label class="qOption" wx:for="{{queryResult.question_options}}" wx:for-item="opt" wx:for-index="index">
+            <radio value="{{index}}" class="radio"/>{{opt}}
+        </label>
+    </radio-group>
+  </view>
+  <div class="nav">
       <button class="prev" size="mini" type="default" bindtap="prevStep">上一步</button>
       <button class="next" size="mini" type="default" bindtap="nextStep">下一步</button>
     </div>
-  </view>
 </view>

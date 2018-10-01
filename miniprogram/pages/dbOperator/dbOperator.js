@@ -14,12 +14,7 @@ Page({
   },
 
   onLoad: function (options) {
-    this.setData({
-      queryResult:{
-        question_text: '123?',
-        question_options: [4,5,6]
-      }
-    })
+    this.onQuery();
   },
   onQuery: function() {
     const db = wx.cloud.database()
@@ -27,7 +22,7 @@ Page({
     db.collection('salesforcedevexamlib').get({
       success: res => {
         this.setData({
-          queryResult: JSON.stringify(res.data, null, 2)
+          queryResult: res.data[0]
         })
         console.log('[数据库] [查询记录] 成功: ', res)
       },
