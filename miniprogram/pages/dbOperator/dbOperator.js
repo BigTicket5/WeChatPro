@@ -1,5 +1,3 @@
-// pages/databaseGuide/databaseGuide.js
-
 const app = getApp()
 
 Page({

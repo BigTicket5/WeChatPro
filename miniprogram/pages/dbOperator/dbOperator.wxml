@@ -1,4 +1,4 @@
-<!--pages/databaseGuide/databaseGuide.wxml-->
+<!--pages/dbOperator/dbOperator.wxml-->
 <view class="container">
   <!-- 查询记录 -->
   <view class="guide" >
