@@ -3,14 +3,22 @@ const app = getApp()
 Page({
 
   data: {
-    step: 1,
     counterId: '',
     openid: '',
     count: null,
     queryResult:{
       question_text : '',
-      question_options : []
+      question_options : [],
+      question_answer: -1
     },
+    choosenIndex: -1,
+    backcolor:[],
+    isSubmitted:{
+      submitBtn:'display:inherit',
+      radioDisable:false,
+      showAns:'display:none'
+    },
+    ansOption:''
   },
 
   onLoad: function (options) {
@@ -22,7 +30,8 @@ Page({
     db.collection('salesforcedevexamlib').get({
       success: res => {
         this.setData({
-          queryResult: res.data[0]
+          queryResult: res.data[0],
+          ansOption:getApp().data.optionNames[res.data[0].question_answer-1]
         })
         console.log('[数据库] [查询记录] 成功: ', res)
       },
@@ -36,6 +45,27 @@ Page({
     })
   },
 
+  radioChange:function(e){
+    console.log('radio发生change事件，携带value值为：', e.detail.value);
+    this.setData({
+      choosenIndex : e.detail.value
+    })
+  },
+  commitAnswer: function(){
+    if (parseInt(this.data.choosenIndex)+1 !== this.data.queryResult.question_answer){
+      var bc = "backcolor["+this.data.choosenIndex+"]";
+      this.setData({
+        [bc]:'red'
+      })
+    }
+    this.setData({
+      isSubmitted:{
+        submitBtn:'display:none',
+        radioDisable:true,
+        showAns :'display:inherit'
+      }
+    })
+  },
  
 
   nextStep: function () {

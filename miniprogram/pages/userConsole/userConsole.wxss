@@ -1,3 +1,3 @@
 /* pages/userConsole/userConsole.wxss */
 
-@import "../../style/guide.wxss";
+@import "../../style/app.wxss";

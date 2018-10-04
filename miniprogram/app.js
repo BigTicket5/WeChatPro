@@ -11,5 +11,8 @@ App({
     }
 
     this.globalData = {}
+  },
+  data:{
+    optionNames:['A','B','C','D','E','F']
   }
 })
