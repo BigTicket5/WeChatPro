@@ -5,7 +5,6 @@
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/dbOperator/dbOperator",
-    "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib"
   ],
