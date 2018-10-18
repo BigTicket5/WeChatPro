@@ -3,7 +3,7 @@ const app = getApp()
 Page({
 
   data: {
-    counterId: '',
+    counterId: 0,
     openid: '',
     count: null,
     queryResult:{
@@ -22,16 +22,16 @@ Page({
   },
 
   onLoad: function (options) {
-    this.onQuery();
+    this.onQuery(this.data.counterId);
   },
-  onQuery: function() {
+  onQuery: function(i) {
     const db = wx.cloud.database()
     // 查询当前用户所有的 counters
     db.collection('salesforcedevexamlib').get({
       success: res => {
         this.setData({
-          queryResult: res.data[0],
-          ansOption:getApp().data.optionNames[res.data[0].question_answer-1]
+          queryResult: res.data[i],
+          ansOption:getApp().data.optionNames[res.data[i].question_answer-1]
         })
         console.log('[数据库] [查询记录] 成功: ', res)
       },
@@ -67,6 +67,14 @@ Page({
     })
   },
  
+  nextQuestion:function(){
+    console.log(this.data.counterId);
+    this.setData({
+      counterId:this.data.counterId+1
+    });
+    this.onQuery(this.data.counterId);
+  },
+  
 
   nextStep: function () {
     // 在第一步，需检查是否有 openid，如无需获取
