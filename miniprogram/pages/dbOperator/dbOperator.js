@@ -6,11 +6,7 @@ Page({
     counterId: 0,
     openid: '',
     count: null,
-    queryResult:{
-      question_text : '',
-      question_options : [],
-      question_answer: -1
-    },
+    queryResult:[],
     choosenIndex: -1,
     backcolor:[],
     isSubmitted:{
@@ -18,22 +14,22 @@ Page({
       radioDisable:false,
       showAns:'display:none'
     },
-    ansOption:''
+    ansOption:[]
   },
 
   onLoad: function (options) {
-    this.onQuery(this.data.counterId);
+    this.onQuery();
   },
-  onQuery: function(i) {
+  onQuery: function() {
     const db = wx.cloud.database()
     // 查询当前用户所有的 counters
     db.collection('salesforcedevexamlib').get({
       success: res => {
         this.setData({
-          queryResult: res.data[i],
-          ansOption:getApp().data.optionNames[res.data[i].question_answer-1]
+          queryResult: res.data
+          //ansOption:getApp().data.optionNames[res.data[i].question_answer-1]
         })
-        console.log('[数据库] [查询记录] 成功: ', res)
+        console.log('[数据库] [查询记录] 成功: ', res.data)
       },
       fail: err => {
         wx.showToast({
@@ -72,9 +68,15 @@ Page({
     this.setData({
       counterId:this.data.counterId+1
     });
-    this.onQuery(this.data.counterId);
   },
   
+  preQuestion:function(){
+    if(this.data.counterId>0){
+      this.setData({
+        counterId:this.data.counterId-1
+      });
+    }
+  },
 
   nextStep: function () {
     // 在第一步，需检查是否有 openid，如无需获取

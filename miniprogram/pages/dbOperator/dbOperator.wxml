@@ -2,9 +2,9 @@
 <view class="container">
   <!-- 查询记录 -->
   <view class="question" >
-    <text class="qText" wx:if="{{queryResult}}" >{{queryResult.question_index}}.{{queryResult.question_text}}</text>
+    <text class="qText" wx:if="{{queryResult[counterId]}}" >{{queryResult[counterId].question_index}}.{{queryResult[counterId].question_text}}</text>
     <radio-group bindchange="radioChange">
-        <label class="qOption" wx:for="{{queryResult.question_options}}" wx:for-item="opt" wx:for-index="index" wx:key="index" style="color:{{backcolor[index]}}">
+        <label class="qOption" wx:for="{{queryResult[counterId].question_options}}" wx:for-item="opt" wx:for-index="index" wx:key="index" style="color:{{backcolor[index]}}">
             <radio value="{{index}}" class="radio" disabled="{{isSubmitted.radioDisable}}"/>{{opt}}
         </label>
     </radio-group>
