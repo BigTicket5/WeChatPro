@@ -2,9 +2,9 @@
 <view class="container">
   <!-- 查询记录 -->
   <view class="question" >
-    <text class="qText" wx:if="{{queryResult}}" >{{queryResult.question_index}}.{{queryResult.question_text}}</text>
+    <text class="qText" wx:if="{{queryResult[counterId]}}" >{{queryResult[counterId].question_index}}.{{queryResult[counterId].question_text}}</text>
     <radio-group bindchange="radioChange">
-        <label class="qOption" wx:for="{{queryResult.question_options}}" wx:for-item="opt" wx:for-index="index" wx:key="index" style="color:{{backcolor[index]}}">
+        <label class="qOption" wx:for="{{queryResult[counterId].question_options}}" wx:for-item="opt" wx:for-index="index" wx:key="index" style="color:{{backcolor[index]}}">
             <radio value="{{index}}" class="radio" disabled="{{isSubmitted.radioDisable}}"/>{{opt}}
         </label>
     </radio-group>
@@ -13,7 +13,7 @@
     <button class="commitbtn" size="mini"  bindtap="commitAnswer" style="{{isSubmitted.submitBtn}}">提交</button>
     <label style="{{isSubmitted.showAns}}" ><text style="color:green">正确答案是: {{ansOption}}</text></label>
   </div>
-  <div style="position:fixed;bottom:5%;">
+  <div style="margin-top:5px">
     <button class="prebtn" size="mini" bindtap="preQuestion">上一题</button>
     <button class="nextbtn" size="mini" bindtap="nextQuestion">下一题</button>
   </div>
