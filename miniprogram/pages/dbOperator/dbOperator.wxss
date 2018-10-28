@@ -2,7 +2,6 @@
 @import "../../style/app.wxss";
 
 .btnarea {
-  margin-top: 40rpx;
   width: 90%;
   height:10%;
 }
@@ -12,6 +11,30 @@
     color: #FFF;
 }
 
+.question {
+  margin-top:10%;
+  width: 90%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px; 
+  height:100%;
+}
+
+.question .qText {
+  font-size: 40rpx;
+  white-space: pre-line;
+}
+
+.question .qOption {
+  font-size: 35rpx;
+  display: flex;
+  padding-top: 40rpx;
+}
+
+.question .ws-checkbox {
+  display: inline-block;
+}
 .nextbtn{
   margin-top: 20rpx;
   margin-left: 60rpx;

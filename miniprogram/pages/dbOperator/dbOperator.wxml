@@ -1,20 +1,20 @@
 <!--pages/dbOperator/dbOperator.wxml-->
-<view class="container">
+<view class="container" scroll-x="true">
   <!-- 查询记录 -->
-  <view class="question" >
+  <scroll-view class="question" scroll-y="true" >
     <text class="qText" wx:if="{{queryResult[counterId]}}" >{{queryResult[counterId].question_index}}.{{queryResult[counterId].question_text}}</text>
-    <radio-group bindchange="radioChange">
+    <checkbox-group bindchange="checkboxChange" style="padding-top:20rpx;">
         <label class="qOption" wx:for="{{queryResult[counterId].question_options}}" wx:for-item="opt" wx:for-index="index" wx:key="index" style="color:{{backcolor[index]}}">
-            <radio value="{{index}}" class="radio" disabled="{{isSubmitted.radioDisable}}"/>{{opt}}
+            <checkbox  value="{{index}}" class="ws-checkbox" disabled="{{isSubmitted.radioDisable}}"/><text>{{opt}}</text>
         </label>
-    </radio-group>
-  </view>
+  </checkbox-group>
+  </scroll-view>
   <div class="btnarea">
     <button class="commitbtn" size="mini"  bindtap="commitAnswer" style="{{isSubmitted.submitBtn}}">提交</button>
     <label style="{{isSubmitted.showAns}}" ><text style="color:green">正确答案是: {{ansOption}}</text></label>
   </div>
-  <div style="margin-top:5px">
+  <div style="margin-bottom:15px">
     <button class="prebtn" size="mini" bindtap="preQuestion">上一题</button>
     <button class="nextbtn" size="mini" bindtap="nextQuestion">下一题</button>
   </div>
-</view>
+</view >

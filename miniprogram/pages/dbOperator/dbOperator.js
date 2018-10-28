@@ -7,7 +7,7 @@ Page({
     openid: '',
     count: null,
     queryResult:[],
-    choosenIndex: -1,
+    choosenIndex:[],
     backcolor:[],
     isSubmitted:{
       submitBtn:'display:inherit',
@@ -27,7 +27,6 @@ Page({
       success: res => {
         this.setData({
           queryResult: res.data
-          //ansOption:getApp().data.optionNames[res.data[i].question_answer-1]
         })
         console.log('[数据库] [查询记录] 成功: ', res.data)
       },
@@ -41,19 +40,35 @@ Page({
     })
   },
 
-  radioChange:function(e){
-    console.log('radio发生change事件，携带value值为：', e.detail.value);
+  checkboxChange:function(e){
+    console.log('checkBox发生change事件，携带value值为：', e.detail.value);
+    var tmp = this.data.choosenIndex;
+    tmp.push(e.detail.value);
     this.setData({
-      choosenIndex : e.detail.value
-    })
+      choosenIndex : tmp
+    });
+    console.log(this.data.choosenIndex);
   },
   commitAnswer: function(){
-    if (parseInt(this.data.choosenIndex)+1 !== this.data.queryResult.question_answer){
-      var bc = "backcolor["+this.data.choosenIndex+"]";
-      this.setData({
-        [bc]:'red'
-      })
+    var idx = this.data.counterId;
+    console.log('____'+this.data.queryResult[idx].question_answer);
+    var answerArray = [];
+    answerArray.push(this.data.queryResult[idx].question_answer);
+    var cIdx = [];
+    cIdx.push(this.data.choosenIndex);
+    for(var c in cIdx){
+      console.log(c);
+      if(answerArray.indexOf(c)>=0){
+        var bc = "backcolor["+this.data.choosenIndex+"]";
+        console.log(bc);
+      }
     }
+    // if (parseInt(this.data.choosenIndex)+1 !== this.data.queryResult.question_answer){
+    //   var bc = "backcolor["+this.data.choosenIndex+"]";
+    //   this.setData({
+    //     [bc]:'red'
+    //   })
+    // }
     this.setData({
       isSubmitted:{
         submitBtn:'display:none',
