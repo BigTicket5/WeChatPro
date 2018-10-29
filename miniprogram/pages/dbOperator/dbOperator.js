@@ -9,6 +9,7 @@ Page({
     queryResult:[],
     choosenIndex:[],
     backcolor:[],
+    choosenBox:[],
     isSubmitted:{
       submitBtn:'display:inherit',
       radioDisable:false,
@@ -28,7 +29,7 @@ Page({
         this.setData({
           queryResult: res.data
         })
-        console.log('[数据库] [查询记录] 成功: ', res.data)
+        console.log('[数据库] [查询记录] 成功: ', res.data);
       },
       fail: err => {
         wx.showToast({
@@ -42,33 +43,35 @@ Page({
 
   checkboxChange:function(e){
     console.log('checkBox发生change事件，携带value值为：', e.detail.value);
-    var tmp = this.data.choosenIndex;
-    tmp.push(e.detail.value);
+    var tmp = [];
+    tmp=e.detail.value;
     this.setData({
       choosenIndex : tmp
     });
     console.log(this.data.choosenIndex);
   },
   commitAnswer: function(){
+    console.log(this.data.choosenIndex);
     var idx = this.data.counterId;
-    console.log('____'+this.data.queryResult[idx].question_answer);
     var answerArray = [];
-    answerArray.push(this.data.queryResult[idx].question_answer);
+    answerArray = this.data.queryResult[idx].question_answer;
     var cIdx = [];
-    cIdx.push(this.data.choosenIndex);
-    for(var c in cIdx){
-      console.log(c);
-      if(answerArray.indexOf(c)>=0){
-        var bc = "backcolor["+this.data.choosenIndex+"]";
-        console.log(bc);
+    cIdx=this.data.choosenIndex;
+    for(var i=0;i<cIdx.length;i++){
+      var choosenIDX = parseInt(cIdx[i]) + 1;
+      var bc = "backcolor["+cIdx[i]+"]";
+      console.log(bc);
+      if(answerArray.indexOf(choosenIDX)>=0){
+        this.setData({
+          [bc]:'green'
+        })
+      }
+      else{
+        this.setData({
+          [bc]:'red'
+        })
       }
     }
-    // if (parseInt(this.data.choosenIndex)+1 !== this.data.queryResult.question_answer){
-    //   var bc = "backcolor["+this.data.choosenIndex+"]";
-    //   this.setData({
-    //     [bc]:'red'
-    //   })
-    // }
     this.setData({
       isSubmitted:{
         submitBtn:'display:none',
@@ -81,7 +84,15 @@ Page({
   nextQuestion:function(){
     console.log(this.data.counterId);
     this.setData({
-      counterId:this.data.counterId+1
+      choosenBox:[],
+      counterId:this.data.counterId+1,
+      backcolor:[],
+      choosenIndex:[0,1],
+      isSubmitted:{
+        radioDisable:false,
+        submitBtn:'display:inherit',
+        showAns :'display:none'
+      }
     });
   },
   

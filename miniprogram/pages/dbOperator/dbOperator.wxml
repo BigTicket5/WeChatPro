@@ -5,7 +5,7 @@
     <text class="qText" wx:if="{{queryResult[counterId]}}" >{{queryResult[counterId].question_index}}.{{queryResult[counterId].question_text}}</text>
     <checkbox-group bindchange="checkboxChange" style="padding-top:20rpx;">
         <label class="qOption" wx:for="{{queryResult[counterId].question_options}}" wx:for-item="opt" wx:for-index="index" wx:key="index" style="color:{{backcolor[index]}}">
-            <checkbox  value="{{index}}" class="ws-checkbox" disabled="{{isSubmitted.radioDisable}}"/><text>{{opt}}</text>
+            <checkbox  value="{{index}}" class="ws-checkbox" disabled="{{isSubmitted.radioDisable}}" checked="{{choosenBox[index]}}"/><text>{{opt}}</text>
         </label>
   </checkbox-group>
   </scroll-view>
