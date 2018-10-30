@@ -23,7 +23,7 @@ Page({
   },
   onQuery: function() {
     const db = wx.cloud.database()
-    // 查询当前用户所有的 counters
+    // 查询所有模拟题
     db.collection('salesforcedevexamlib').get({
       success: res => {
         this.setData({
@@ -57,6 +57,15 @@ Page({
     answerArray = this.data.queryResult[idx].question_answer;
     var cIdx = [];
     cIdx=this.data.choosenIndex;
+    var ansO =[]
+    for(var i=0;i<answerArray.length;i++){
+      console.log(app.data.optionNames[answerArray[i]]);
+      ansO.push(app.data.optionNames[answerArray[i]-1]);
+    }
+    this.setData({
+      ansOption: ansO 
+    });
+    console.log(this.data.ansOption);
     for(var i=0;i<cIdx.length;i++){
       var choosenIDX = parseInt(cIdx[i]) + 1;
       var bc = "backcolor["+cIdx[i]+"]";
@@ -87,7 +96,7 @@ Page({
       choosenBox:[],
       counterId:this.data.counterId+1,
       backcolor:[],
-      choosenIndex:[0,1],
+      choosenIndex:[],
       isSubmitted:{
         radioDisable:false,
         submitBtn:'display:inherit',
@@ -99,7 +108,15 @@ Page({
   preQuestion:function(){
     if(this.data.counterId>0){
       this.setData({
-        counterId:this.data.counterId-1
+        choosenBox:[],
+        counterId:this.data.counterId-1,
+        backcolor:[],
+        choosenIndex:[],
+        isSubmitted:{
+          radioDisable:false,
+          submitBtn:'display:inherit',
+          showAns :'display:none'
+        }
       });
     }
   },
