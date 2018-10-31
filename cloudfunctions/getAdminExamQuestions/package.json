@@ -1,14 +1,15 @@
 {
-    "name": "getAdminExamQuestions",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "mzz",
-    "license": "ISC",
-    "dependencies": {
-      "wx-server-sdk": "latest"
-    }
+  "name": "getAdminExamQuestions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mzz",
+  "license": "ISC",
+  "dependencies": {
+    "index.js": "0.0.3",
+    "wx-server-sdk": "0.0.24"
   }
+}
