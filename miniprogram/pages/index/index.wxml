@@ -15,7 +15,7 @@
   <!-- 操作数据库 -->
   <view class="uploader">
     <navigator url="../dbOperator/dbOperator" open-type="navigate" class="uploader-text">
-      <text>前端操作数据库</text>
+      <text>开始答题</text>
     </navigator>
   </view>
 

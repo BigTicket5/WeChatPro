@@ -24,10 +24,13 @@ Page({
   onQuery: function() {
     wx.cloud.callFunction({
       name:'getAdminExamQuestions',
-      complete:res=>{
+      success:res=>{
         this.setData({
           queryResult:res.result.data
         })
+      },
+      fail: err => {
+        console.error('[云函数] [getAdminExamQuestions] 调用失败', err)
       }
     })
   },
