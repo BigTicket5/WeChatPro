@@ -1,13 +1,10 @@
 <!--index.wxml-->
 <view class="container">
 
-
-  <!-- 开始答题 -->
-  <view  style="text-align:center;margin:40rpx ">
-    <navigator url="../dbOperator/dbOperator" open-type="navigate" class="uploader-text" hover-class="other-navigator-hover" >
-      <text>开始答题</text>
-    </navigator>
+  <view>
+    <open-data type="userAvatarUrl"></open-data>
+    <!-- 需要使用 button 来授权登录 -->
+    <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+    <view wx:else>请升级微信版本</view>
   </view>
-
-
 </view>
