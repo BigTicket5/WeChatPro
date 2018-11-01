@@ -1,5 +1,9 @@
 <!--pages/dbOperator/dbOperator.wxml-->
 <view class="container" scroll-x="true">
+
+  <loading hidden="{{hidden}}">
+      加载中...
+  </loading>
   <!-- 查询记录 -->
   <scroll-view class="question" scroll-y="true" >
     <text class="qText" wx:if="{{queryResult[counterId]}}" >{{queryResult[counterId].question_index}}.{{queryResult[counterId].question_text}}</text>

@@ -11,6 +11,7 @@
 	"appid": "wx51a0fda3638fc8a5",
 	"projectname": "WeChatPro",
 	"libVersion": "2.2.5",
+	"compileType": "miniprogram",
 	"condition": {
 		"search": {
 			"current": -1,

@@ -15,10 +15,13 @@ Page({
       radioDisable:false,
       showAns:'display:none'
     },
-    ansOption:[]
+    ansOption:[],
+    hidden:false
   },
 
+
   onLoad: function (options) {
+    //this.loadingTap();
     this.onQuery();
   },
   onQuery: function() {
@@ -26,7 +29,8 @@ Page({
       name:'getAdminExamQuestions',
       success:res=>{
         this.setData({
-          queryResult:res.result.data
+          queryResult:res.result.data,
+          hidden: true
         })
       },
       fail: err => {

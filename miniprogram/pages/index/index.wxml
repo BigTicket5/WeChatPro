@@ -1,20 +1,10 @@
 <!--index.wxml-->
 <view class="container">
 
-  <!-- 用户 openid -->
-  <view class="userinfo">
-    <button 
-      open-type="getUserInfo" 
-      bindgetuserinfo="onGetUserInfo"
-      class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}})"
-    ></button>
-  
-  </view>
 
-  <!-- 操作数据库 -->
-  <view class="uploader">
-    <navigator url="../dbOperator/dbOperator" open-type="navigate" class="uploader-text">
+  <!-- 开始答题 -->
+  <view  style="text-align:center;margin:40rpx ">
+    <navigator url="../dbOperator/dbOperator" open-type="navigate" class="uploader-text" hover-class="other-navigator-hover" >
       <text>开始答题</text>
     </navigator>
   </view>
