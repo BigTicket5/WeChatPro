@@ -7,22 +7,23 @@ Page({
   },
   onLoad: function() {
     // 查看是否授权
-    wx.getSetting({
-      success (res){
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function(res) {
-              wx.redirectTo({
-                url: '../dbOperator/dbOperator'
-              })
-            }
-          })
-        }
-      }
-    })
   },
   bindGetUserInfo (e) {
     console.log(e.detail.userInfo)
+  },
+  allbegin: function(){
+    wx.showModal({
+      title: '提示', 
+      content: '这是一个模态弹窗',  
+            success: function(res) {  
+                if (res.confirm) {  
+                  wx.redirectTo({
+                    url: '../dbOperator/dbOperator'
+                  })  
+                } else if (res.cancel) {  
+                console.log('用户点击取消')  
+                }  
+            }  
+    })
   }
 })
