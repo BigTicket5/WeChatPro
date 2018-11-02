@@ -2,7 +2,7 @@
 <view class="container">
 
   <view>
-    <button wx:if="{{canIUse}}" bindtap="allbegin">开始答题</button>
-    <view wx:else>请升级微信版本</view>
+  <open-data type="userAvatarUrl"></open-data>
+    <button bindtap="startAns">开始答题</button>
   </view>
 </view>

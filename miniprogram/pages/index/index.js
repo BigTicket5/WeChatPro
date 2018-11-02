@@ -2,28 +2,37 @@
 const app = getApp()
 
 Page({
-  data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
   onLoad: function() {
     // 查看是否授权
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              console.log(res.userInfo)
+            }
+          })
+        }
+        else{
+          wx.showModal({
+            title: '微信授权', 
+            content: 'ADM201题库申请获得以下权限:',  
+              success: function(res) {  
+                  if (res.confirm) {  
+                    console.log('用户同意')
+                  } else if (res.cancel) {  
+                    console.log('用户拒绝')  
+                  }  
+              }  
+          })
+        }
+      }
+    })
   },
-  bindGetUserInfo (e) {
-    console.log(e.detail.userInfo)
-  },
-  allbegin: function(){
-    wx.showModal({
-      title: '提示', 
-      content: '这是一个模态弹窗',  
-            success: function(res) {  
-                if (res.confirm) {  
-                  wx.redirectTo({
-                    url: '../dbOperator/dbOperator'
-                  })  
-                } else if (res.cancel) {  
-                console.log('用户点击取消')  
-                }  
-            }  
+  startAns:function(){
+    wx.navigateTo({
+      url: '../dbOperator/dbOperator'
     })
   }
 })
