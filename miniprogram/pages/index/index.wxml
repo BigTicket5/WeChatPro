@@ -1,8 +1,11 @@
 <!--index.wxml-->
 <view class="container">
-
-  <view>
-  <open-data type="userAvatarUrl"></open-data>
-    <button bindtap="startAns">开始答题</button>
+  <view class="userinfo">
+    <view class="userinfo-avatar">
+      <open-data type="userAvatarUrl"  class='icon' mode='aspectFit' ></open-data>
+    </view>
   </view>
+  <button class="btnarea" bindtap="startAns">重新开始</button>
+  <button class="btnarea" bindtap="">继续答题</button>
+  <button class="btnarea" bindtap="">邀请好友</button>
 </view>

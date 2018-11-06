@@ -7,7 +7,7 @@
   <!-- 查询记录 -->
   <scroll-view class="question" scroll-y="true" >
     <text class="qText" wx:if="{{queryResult[counterId]}}" >{{queryResult[counterId].question_index}}.{{queryResult[counterId].question_text}}</text>
-    <checkbox-group bindchange="checkboxChange" style="padding-top:20rpx;">
+    <checkbox-group bindchange="checkboxChange" style="padding-top:40rpx;">
         <label class="qOption" wx:for="{{queryResult[counterId].question_options}}" wx:for-item="opt" wx:for-index="index" wx:key="index" style="color:{{backcolor[index]}}">
             <checkbox  value="{{index}}" class="ws-checkbox" disabled="{{isSubmitted.radioDisable}}" checked="{{choosenBox[index]}}"/><text>{{opt}}</text>
         </label>
@@ -17,7 +17,7 @@
     <button class="commitbtn" size="mini"  bindtap="commitAnswer" style="{{isSubmitted.submitBtn}}">提交</button>
     <label style="{{isSubmitted.showAns}}" ><text style="color:green">正确答案是: {{ansOption}}</text></label>
   </div>
-  <div style="margin-bottom:15px">
+  <div class="opbtn">
     <button class="prebtn" size="mini" bindtap="preQuestion">上一题</button>
     <button class="nextbtn" size="mini" bindtap="nextQuestion">下一题</button>
   </div>

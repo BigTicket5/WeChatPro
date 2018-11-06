@@ -6,9 +6,13 @@
   height:10%;
 }
 .commitbtn {
-    margin-top: 30rpx;
-    background-color: #FFCC00;
-    color: #FFF;
+    width:80%;
+    margin-top: 20rpx;
+    border: 3px solid;
+    border-radius: 10px;
+    background-color: white;
+    color:black;
+    border-color:coral;
 }
 
 .question {
@@ -17,8 +21,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border-radius: 3px; 
-  height:70%;
+  border-radius: 10px; 
+  height:65%;
 }
 
 .question .qText {
@@ -35,11 +39,24 @@
 .question .ws-checkbox {
   display: inline-block;
 }
+
+.opbtn{
+  margin-bottom:15px;
+  width:72%;
+}
 .nextbtn{
   margin-top: 20rpx;
-  margin-left: 60rpx;
+  margin-left: 10%;
+  border:3px solid;
+  border-color:coral;
+  border-radius: 10px;
+  width:45%;
 }
 
 .prebtn{
   margin-top: 20rpx;
+  border: 3px solid;
+  border-color:coral;
+  border-radius: 10px;
+  width:45%;
 }
