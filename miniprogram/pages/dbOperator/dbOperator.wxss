@@ -4,6 +4,7 @@
 .btnarea {
   width: 90%;
   height:10%;
+  margin-top:20rpx;
 }
 .commitbtn {
     width:80%;
