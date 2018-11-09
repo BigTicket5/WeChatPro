@@ -2,7 +2,6 @@
 App({
   onLaunch: function () {
     wx.cloud.init();
-    var that = this
     var user=wx.getStorageSync('user') || {};  
     var userInfo=wx.getStorageSync('userInfo') || {}; 
     userInfo={};
@@ -23,20 +22,20 @@ App({
                                     wx.setStorageSync('userInfo', objz);//存储userInfo
                                 }
                             });
-                            var d=that.globalData;//这里存储了appid、secret、token串  
-                            var l='https://api.weixin.qq.com/sns/jscode2session?appid='+d.appid+'&secret='+d.secret+'&js_code='+res.code+'&grant_type=authorization_code';  
-                            wx.request({  
-                                url: l,  
-                                data: {},  
-                                method: 'GET',
-                                success: function(res){ 
-                                    var obj={};
-                                    obj.openid=res.data.openid;  
-                                    obj.expires_in=Date.now()+res.data.expires_in;  
-                                    //console.log(obj);
-                                    wx.setStorageSync('user', obj);//存储openid  
-                                }  
-                            });
+                            wx.cloud.callFunction({
+                                name:'login',
+                                data:{},
+                                success:res=>{
+                                    app.globalData.openid = res.result.openid
+                                },
+                                fail:err =>{
+                                    wx.showToast({	
+                                        icon: 'none',	
+                                        title: '获取 openid 失败，请检查是否有部署 login 云函数',	
+                                      })	
+                                    console.log('[云函数] [login] 获取 openid 失败，请检查是否有部署云函数，错误信息：', err)
+                                }
+                            })
                         }else {
                             console.log('获取用户登录态失败！' + res.errMsg)
                         }          
@@ -57,7 +56,7 @@ App({
   },
   globalData:{
     optionNames:['A','B','C','D','E','F'],
-    appid:'',
+    openid:'',
     secret:''
   }
 })
